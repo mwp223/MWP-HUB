@@ -39,6 +39,7 @@
       margin-top: 28px;
       border-bottom: 2px solid #1f2b41;
       padding-bottom: 2px;
+      flex-wrap: wrap;
     }
 
     .tab-btn {
@@ -230,6 +231,101 @@
       color: #7b8aa8;
       font-size: 0.7rem;
       letter-spacing: 0.3px;
+    }
+
+    /* ------ SHOP TAB ------ */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin: 20px 0 10px;
+    }
+
+    .shop-card {
+      background: #131f36;
+      border: 1px solid #2a3b58;
+      border-radius: 20px;
+      padding: 28px 24px 30px;
+      text-align: center;
+      transition: 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .shop-card:hover {
+      border-color: #4c8bf5;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(76, 139, 245, 0.1);
+    }
+
+    .shop-card .icon {
+      font-size: 2.8rem;
+      color: #4c8bf5;
+      background: #1a253b;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      border: 1px solid #2f3f5e;
+    }
+
+    .shop-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .shop-card .platform {
+      color: #8ea4c9;
+      font-size: 0.8rem;
+      background: #1a253b;
+      padding: 2px 14px;
+      border-radius: 40px;
+      margin-bottom: 10px;
+      border: 1px solid #25344f;
+    }
+
+    .shop-card .price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #4c8bf5;
+      margin: 8px 0 16px;
+    }
+
+    .shop-card .price small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #7b8aa8;
+    }
+
+    .shop-card .btn-shop {
+      background: #2f6ed4;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .shop-card .btn-shop:hover {
+      background: #1f5bbc;
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(47, 110, 212, 0.3);
     }
 
     /* ------ OBFUSCATOR (dark) ------ */
@@ -471,6 +567,25 @@
 
     /* small tweaks */
     .fa-discord { color: #5865f2; }
+
+    @media (max-width: 600px) {
+      .tabs .tab-btn {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        flex: 1;
+        text-align: center;
+      }
+      .shop-grid {
+        grid-template-columns: 1fr;
+      }
+      .discord-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .discord-card .left {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
@@ -478,6 +593,7 @@
   <!-- TABS -->
   <div class="tabs">
     <button class="tab-btn active" data-tab="hub"><i class="fas fa-home" style="margin-right: 8px;"></i> MWP Hub</button>
+    <button class="tab-btn" data-tab="shop"><i class="fas fa-store" style="margin-right: 8px;"></i> Shop</button>
     <button class="tab-btn" data-tab="obf"><i class="fas fa-lock" style="margin-right: 8px;"></i> My Obfuscator</button>
   </div>
 
@@ -508,7 +624,7 @@
       <div class="stat">
         <i class="fas fa-robot"></i>
         <span>SAB</span>
-        <small>and other games</small>
+        <small>admin, spectate & other games</small>
       </div>
       <div class="stat">
         <i class="fas fa-code"></i>
@@ -518,7 +634,7 @@
       <div class="stat">
         <i class="fas fa-download"></i>
         <span>always updated</span>
-        <small>MWP HUB</small>
+        <small>MWP core</small>
       </div>
     </div>
     <p style="color: #7b8aa8; font-size: 0.9rem; margin-top: 20px; border-top: 1px solid #1f2b41; padding-top: 18px;">
@@ -526,7 +642,56 @@
     </p>
   </div>
 
-  <!-- TAB 2: OBFUSCATOR (dark blue, integrated from your code) -->
+  <!-- TAB 2: SHOP -->
+  <div id="tab-shop" class="tab-content">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px; flex-wrap: wrap;">
+      <i class="fas fa-shopping-cart" style="font-size: 2rem; color: #4c8bf5;"></i>
+      <h2 style="font-weight: 600; font-size: 1.8rem; color: #e8edf5;">MWP Store</h2>
+      <span class="hub-badge" style="margin-left: 0;"><i class="fas fa-bolt" style="margin-right: 4px;"></i> instant delivery</span>
+    </div>
+
+    <div class="shop-grid">
+      <!-- MWP DUELS (MOBILE) -->
+      <div class="shop-card">
+        <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>MWP DUELS</h3>
+        <span class="platform"><i class="fas fa-phone" style="margin-right: 4px;"></i> Mobile</span>
+        <div class="price">$5.00 <small>USD</small></div>
+        <a href="https://mwp-hub.mysellauth.com/product/mwp-duels-mobile" target="_blank" class="btn-shop">
+          <i class="fas fa-external-link-alt"></i> Buy Now
+        </a>
+      </div>
+
+      <!-- MWP DUELS (PC) -->
+      <div class="shop-card">
+        <div class="icon"><i class="fas fa-desktop"></i></div>
+        <h3>MWP DUELS</h3>
+        <span class="platform"><i class="fas fa-gamepad" style="margin-right: 4px;"></i> PC</span>
+        <div class="price">$5.00 <small>USD</small></div>
+        <a href="https://mwp-hub.mysellauth.com/product/mwp-duels" target="_blank" class="btn-shop">
+          <i class="fas fa-external-link-alt"></i> Buy Now
+        </a>
+      </div>
+
+      <!-- MWP HUB V11 -->
+      <div class="shop-card">
+        <div class="icon"><i class="fas fa-crown"></i></div>
+        <h3>MWP HUB V11</h3>
+        <span class="platform"><i class="fas fa-infinity" style="margin-right: 4px;"></i> Lifetime</span>
+        <div class="price">$10.00 <small>USD</small></div>
+        <a href="https://mwp-hub.mysellauth.com/product/mwp-hub-lifetime" target="_blank" class="btn-shop">
+          <i class="fas fa-external-link-alt"></i> Buy Now
+        </a>
+      </div>
+    </div>
+
+    <p style="color: #7b8aa8; font-size: 0.85rem; margin-top: 16px; border-top: 1px solid #1f2b41; padding-top: 16px;">
+      <i class="fas fa-shield-alt" style="color: #4c8bf5; margin-right: 6px;"></i> 
+      All purchases are processed securely through SellAuth. Instant delivery after payment.
+    </p>
+  </div>
+
+  <!-- TAB 3: OBFUSCATOR -->
   <div id="tab-obf" class="tab-content">
     <div class="obf-header">
       <h2><i class="fas fa-key" style="color: #4c8bf5;"></i> MWP'S OBFUSCATOR <span style="font-size: 0.9rem; font-weight: 400; color: #7b8aa8;">· Roblox Lua</span></h2>
@@ -582,6 +747,7 @@
     const tabs = document.querySelectorAll('.tab-btn');
     const contents = {
       hub: document.getElementById('tab-hub'),
+      shop: document.getElementById('tab-shop'),
       obf: document.getElementById('tab-obf')
     };
 
@@ -597,7 +763,7 @@
       });
     });
 
-    // ------- OBFUSCATOR LOGIC (dark theme, same functionality) -------
+    // ------- OBFUSCATOR LOGIC -------
     const input = document.getElementById('input');
     const output = document.getElementById('output');
     const runBtn = document.getElementById('runBtn');
